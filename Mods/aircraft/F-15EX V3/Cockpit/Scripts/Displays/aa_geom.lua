@@ -1,0 +1,56 @@
+
+
+
+
+HUDAA_GEOM = {
+	TD_HALF = 7,
+	TD_EDGE = 7,
+
+	TD_EDGE_BELOW = 0,
+
+	TD_FLASH = 1.0,
+	TD_DOT = 1.4, TD_GAP = 1.6,
+
+
+
+
+	RS_IN = 8, RS_TOP = 27, RS_BOT = -58,
+	NE_PIECES = 40,
+
+
+	ASE_MIN = 18, ASE_MAX = 60, ASE_TAU = 0.35,
+
+
+
+
+	ASE_A_MIN = 3, ASE_A_FULL = 30,
+
+
+
+
+
+	ASE_DASHES = 8, ASE_DUTY = 0.5, ASE_BAND = 1.08, ASE_ARC_PIECES = 3,
+
+	WEZ_TRI = 3.0,
+	WEZ_CIRC = 2.0,
+	WEZ_BAR = 3.5,
+	WEZ_TEE = 3.5,
+	WEZ_TR_X = 4,
+	ASPECT_LEN = 8,
+	SKR_FOV_R = 30,
+	SEEKER_R = 9,
+	SEEKER_UNC_R = 22.5,
+
+	SHOOT_R = 4.5, SHOOT_DY = -14,
+
+
+
+	RETICLE_R = 25, RB_R = 21.5, RB_W = 2.4, RB_PIECES = 36, RB_MAX_FT = 12000,
+	RETICLE_TICK = 4, RETICLE_DOT = 1.6,
+	PIPPER_R = 1.6,
+	GUN_TRACK_M = 3657.6,
+
+
+	FUNNEL_DASHES = 44, FUNNEL_DASH_STEP = 6, FUNNEL_DASH_LEN = 3.2,
+	FUNNEL_Y_MIN = -150,
+}
