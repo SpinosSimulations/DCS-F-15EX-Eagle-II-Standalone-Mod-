@@ -1,0 +1,8 @@
+Credits (V2.33)
+
+Liveries: AWACS_Bandog, Vasy
+Weapons: currenthill, Spino, nightstorm
+Cockpit Model: musolo/Yautja
+Testing: Infidel, Emerald 467, Tyrant
+Menu Theme: zamoski, Jaku, SMOKE
+Fuel system and model edits: Alfa_Bravo_Zapa

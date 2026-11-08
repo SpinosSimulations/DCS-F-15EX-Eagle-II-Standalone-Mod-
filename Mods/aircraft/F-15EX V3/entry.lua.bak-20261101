@@ -1,0 +1,203 @@
+self_ID = "F15EX"
+declare_plugin(self_ID,
+{
+image     	 = "FC3.bmp",
+installed 	 = true,
+dirName	  	 = current_mod_path,
+displayName  = _("F-15EX"),
+developerName = _("Spino"),
+
+fileMenuName = _("F-15EX"),
+update_id        = "F-15EX",
+version		 = "3.0",
+state		 = "installed",
+info		 = _("The F-15EX Eagle II is a recent development of the F-15E Strike Eagle, and intended to replace the USAF's existing fleet of legacy F-15C air superiority fighters.  It can carry up to 22 AIM-120 AMRAAMs thanks to its outer wing pylons and AMBER missile launchers, and features advanced AESA radar, a modernized cockpit, and more powerful engines. Beta build: do not redistribute. A new version of the F-15EX, not made or supported by Eagle Dynamics."),
+
+Skins	=
+	{
+		{
+		    name	= _("F-15EX"),
+			dir		= "Theme"
+		},
+	},
+Missions =
+	{
+		{
+			name		    = _("F15EX"),
+			dir			    = "Missions",
+  		},
+	},
+LogBook =
+	{
+
+		{
+			name		= _("F15EX"),
+			type		= "F15EX",
+		},
+	},	
+
+Options =
+	{
+		{
+			name		= _("F-15EX"),
+			nameId		= "F15EX",
+			dir			= "Options",
+			CLSID		= "{F15EX options}"
+		},
+	},
+
+binaries = {'F15EX_FM'},
+
+
+
+load_immediately = true,
+		
+InputProfiles =
+	{
+		["F15EX"] = current_mod_path .. '/Input/F15EX',
+		["F15EX_CFT"] = current_mod_path .. '/Input/F15EX',
+		["F15IA"] = current_mod_path .. '/Input/F15EX',
+	},
+})
+
+mount_vfs_model_path	(current_mod_path.."/Shapes")
+mount_vfs_liveries_path (current_mod_path.."/Liveries")
+mount_vfs_sound_path(current_mod_path .. "/Sounds/")
+mount_vfs_texture_path (current_mod_path.."/Textures/F15EX")
+mount_vfs_texture_path (current_mod_path.."/Textures/Weapons")
+mount_vfs_texture_path (current_mod_path.."/Textures/Cockpit")
+mount_vfs_texture_path (current_mod_path.."/Textures/AIM-174B")
+
+
+
+
+local STANDALONE = {F15EX = true, F15EX_CFT = true, F15IA = true}
+local function cockpit_path(unit)
+	if STANDALONE[unit] then return current_mod_path..'/Cockpit/Scripts/' end
+	return current_mod_path..'/Cockpit/KneeboardRight/'
+end
+
+local cfg_path = current_mod_path ..  "/FM/config.lua"
+dofile(cfg_path)
+F15EVSN[1] 				= self_ID
+F15EVSN[2] 				= 'F15EX_FM'
+F15EVSN.config_path 	= cfg_path
+if not STANDALONE['F15EX'] then F15EVSN.old = 6 end
+F15EVSN.user_options 	= 'F15EX'
+
+dofile(current_mod_path.."/Views_F15Pit.lua")
+make_view_settings('F15EX', ViewSettings, SnapViews)
+
+
+
+make_flyable('F15EX', cockpit_path('F15EX'), F15EVSN , current_mod_path..'/comm.lua') 
+
+local cfg_path = current_mod_path ..  "/FM/config_cft.lua"
+
+
+dofile(cfg_path)
+F15EVSN[1] 				= self_ID
+F15EVSN[2] 				= 'F15EX_FM'
+F15EVSN.config_path 	= cfg_path
+if not STANDALONE['F15EX_CFT'] then F15EVSN.old = 6 end
+F15EVSN.user_options 	= 'F15EX_CFT'
+
+dofile(current_mod_path.."/Views_F15Pit.lua")
+make_view_settings('F15EX_CFT', ViewSettings, SnapViews)
+
+
+
+make_flyable('F15EX_CFT', cockpit_path('F15EX_CFT'), F15EVSN , current_mod_path..'/comm.lua') 
+
+local cfg_path = current_mod_path ..  "/FM/config_cft.lua"
+
+
+dofile(cfg_path)
+F15EVSN[1] 				= self_ID
+F15EVSN[2] 				= 'F15EX_FM'
+F15EVSN.config_path 	= cfg_path
+if not STANDALONE['F15IA'] then F15EVSN.old = 6 end
+F15EVSN.user_options 	= 'F15IA'
+
+dofile(current_mod_path.."/Views_F15Pit.lua")
+make_view_settings('F15IA', ViewSettings, SnapViews)
+
+
+
+make_flyable('F15IA', cockpit_path('F15IA'), F15EVSN , current_mod_path..'/comm.lua') 
+
+dofile(current_mod_path.."/Weapons/Loadout.lua")
+
+
+do
+	local SENSOR_RADAR, SENSOR_RWR = 1, 3
+	local RADAR_MULTIROLE = 2
+	local ASPECT_HEAD_ON, ASPECT_TAIL_ON = 0, 1
+	local HEMISPHERE_UPPER, HEMISPHERE_LOWER = 0, 1
+	APG_82 = {
+		Name = "AN/APG-82",
+		category = SENSOR_RADAR,
+		type = RADAR_MULTIROLE,
+		scan_volume =
+		{
+			azimuth = {-70.0, 70.0},
+			elevation = {-70.0, 70.0}
+		},
+		-- AI jets AND the player's feed: DCS's avSimpleRadar only feeds the R3 model what this sensor detects (flight
+		-- 2026-10-14: at 135 km on 1 m^2 the A-50 was fed from 496 km, R3 wants 685 km). Was 2,960 km in every aspect
+		-- (V2.33; beta report 2026-10-08 AV-1: an AI EX saw 1,600 nm), then 135 km (R3's own Pd 0.5 range).
+		-- Now 1.7 x that (setting: feed headroom, A-50 ~840 km); the tail-on and look-down cuts are estimates.
+		max_measuring_distance = 300000.0,	-- setting: m, our largest scale (160 nm) with room
+		scan_period = 0.001,
+		air_search = {
+			centered_scan_volume =
+			{
+				azimuth_sector = 45.0,
+				elevation_sector = 45.0
+			},
+			RCS = 1,
+			detection_distance =
+			{
+				[HEMISPHERE_UPPER] =
+				{
+					[ASPECT_HEAD_ON] = 230000.0,	-- 1.7 x the R3 spec (135 km), 1 m^2
+					[ASPECT_TAIL_ON] = 162000.0		-- estimate: 0.7 x (low closure)
+				},
+				[HEMISPHERE_LOWER] =
+				{
+					[ASPECT_HEAD_ON] = 196000.0,	-- estimate: 0.85 x (ground clutter, R3's clutter factor)
+					[ASPECT_TAIL_ON] = 136000.0		-- estimate: 0.85 x tail-on
+				}
+			},
+			lock_on_distance_coeff = 0.95,
+			multiple_targets_tracking = true,
+			TWS_max_targets = 12,
+			velocity_limits =
+			{
+				radial_velocity_min = 200.0 / 3.6,
+				relative_radial_velocity_min = 200.0 / 3.6,
+			},
+		},
+		surface_search = {
+			vehicles_detection = true,
+			RCS = 100,
+			RBM_detection_distance = 185000.0,
+			GMTI_detection_distance = 185000.0,
+			HRM_detection_distance = 185000.0
+		}
+	}
+	declare_sensor(APG_82)
+	f15exrwr = {
+		Name = "AN/ALQ-250",
+		category = SENSOR_RWR,
+		detection_dist_to_radar_detection_dist_max_ratio = 0.95,
+		lock_on_detection = true
+	}
+	declare_sensor(f15exrwr)
+end
+dofile(current_mod_path.."/UnitPayloads/F15EX.lua")
+dofile(current_mod_path..'/F15EX.lua')
+dofile(current_mod_path..'/F15EX_CFT.lua')
+dofile(current_mod_path..'/F15IA.lua')
+
+plugin_done()

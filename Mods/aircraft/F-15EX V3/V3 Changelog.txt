@@ -1,0 +1,176 @@
+F-15EX V3 Changelog
+
+	A new version of the F-15EX. Not made or supported by Eagle Dynamics.
+
+	Flight Model:
+	- New external flight model of its own for all three variants (no longer borrows the F-15C flight model)
+	- F110-GE-129 engines
+	- Real internal fuel: 13,550 lb (F-15EX), 23,305 lb with CFTs (F-15EX (CFTs), F-15IA)
+	- CFT variants have their own empty weight, CG, inertia and CFT drag
+	- Fly-by-wire with g and AoA limiting: 30 deg AoA limit, 25 deg on the CFT variants
+	- Reworked store drag
+	- Reworked landing gear, brakes and nosewheel steering
+
+	Avionics (all three variants):
+	- New standalone cockpit avionics, replacing the FC3 F-15C systems
+	- Large area display (LAD) touchscreen with selectable windows and formats
+	- Engine / fuel display (shows the CFT tanks on the CFT variants)
+	- AN/APG-82 AESA radar with track-while-scan and AIM-120 guidance
+	- LPI radar: other aircraft's RWRs don't see the radar's search, in single player and multiplayer; a lock warns as normal
+	- HUD and helmet-mounted display with head tracking; high off-boresight AIM-9X / Python-5
+	- TEWS / RWR display, chaff and flares
+	- Datalink picture from friendly AWACS, ground radars and fighters
+	- Cold start, electrical system, INS alignment and navigation pages
+	- Two ARC-210 V/UHF radios with mission editor presets
+	- Voice warnings
+	- The helmet display needs Scripts\Hooks\F15EX_HMD_hook.lua (see the README)
+
+	Weapons:
+	- AIM-120C-5, C-7, C-8, D, D-3, AIM-174B, AIM-260A and AIM-200A as separate weapons, all available at once
+	- AIM-174B with its own model (thanks to currenthill)
+	- Air-to-ground weapons removed for now (targeting pods, IRST pod and fuel tanks kept)
+
+	Loadouts:
+	- 15 single stations: wing rails and fuselage / CFT stations can be loaded one by one
+	- Every missile on every station that can carry it
+	- 26 mission editor presets for each variant
+
+	Mod:
+	- Mod folder renamed to F-15EX V3
+	- Removed the unused Eagle Vision and Sensors folders
+
+
+F-15EX V2.33 Changelog
+
+	Weapons: 
+	- Removed all weapons that do not work for player
+	- Renamed AIM-120C-5 loadouts
+	- Removed all custom FOX-3s from loadout options
+	
+	FM:
+	- Fixed fuel capacity for CFT variants
+
+	Variants:
+	- Re-worked F-15EX to not have CFTs
+	- Added F-15EX (CFTs) and F-15IA
+
+	Models:
+	- Edited model with removed CFTs for F-15EX (thanks to Alfa_Bravo_Zapa)
+
+	Animations:
+	- Removed WSO for F-15EX liveries (ANG)
+
+	Loadouts:
+	- Re-worked loadouts to allow targeting podst to be mounted
+
+F-15EX V2.3 Changelog
+
+	Weapons: 
+	- Updated code for AIM-9X Block II (should now be able to do loops).
+	- Updated code for all custom missiles (including ramjet scheme for MAKO)
+	- Added BRU-57 twin rack loadouts for MAKO
+	- Updated AIM-260 model and textures
+	- Updated missile GUI images
+	- Updated missile loadout positions
+	- Added AGR-20F APKWS II (IR seeker), with two warhead options
+	
+	FCS:
+	- Added FBW system with CAS limiters and updated/smoothed FCS functions
+
+	Code:
+	- Updated suspension code (hopefully fixed issue with landing gear fragility)
+
+	Missions:
+	- Updated Quickstart missions (thanks to Jetson)
+
+	Liveries:
+	- Added F-15EX Desert Camo liveries - 114th FS and 194th FS, fictional (thanks to AWACS_Bandog)
+	- Added args to put pilot and WSO visors down
+	- Added custom pylon textures for each included livery
+
+	Animations:
+	- Added crew ladder, intake ramp, and wingtip bending animations
+	- Syncronized animation args for multiplayer
+
+
+F-15EX V2.26 Changelog
+	
+	Weapons:
+	- Fixed issue with AMBER AIM-120C-8 loadouts not available on starboard CFT pylons
+	- Added new loadouts for stock AIM-120C-5 on all pylons (as a fallback in case modded missiles do not perform as intended)
+	- Added new LAU-127 rail loadouts for AIM-120C-7, C-8, D-3, and AIM-260A (for use with MQ-58 Valkyrie)
+
+
+F-15EX V2.25 Hotfix Changelog
+
+	Code:
+	- Fixed conflict with F-22A mod by Grinnelli
+	- Fixed alert in DCS log
+	- Increased MAKO warhead mass	
+	
+
+F-15EX V2.2 Changelog
+
+	Loadouts:
+	- Re-configured loadouts for wing missile rails to prevent asymmetric AAM loadouts and simplify code
+	- Fixed issue with AIM-120C-7 model not showing up
+	- Added unit payloads
+	- Re-numbered pylons to reflect new loadout scheme
+	- Fixed issue with AMRAAMs not showing up properly on AMBER
+	- Added single AIM-120C-7 and C-8 to fuselage hardpoints
+	- Re-worked missile pictures in Mission Editor
+	- Fixed loadouts in quickstart missions
+	- Added AAQ-13 and AAQ-33 pods (must give up rear fuselage stations to mount, works best with CFT bomb loads)
+	- Added expanded AI and player ground attack weapons (more BLU-107s for player, more JDAMs and JSOWs for AI)
+	- Re-named Legion pod to AN/ASG-34 IRST21 Legion pod
+
+	Liveries:
+	- Added several new USAF liveries
+
+	Missions:
+	- Corrected several issues with quickstart missions
+	
+	Flight Model:
+	- Corrected error in engine table
+
+
+F-15EX V2.07 Changelog
+	
+	Weapons:
+	- Added new code for AIM-9X II, AIM-120C-7, AIM-200, and AIM-260.
+	- Added AIM-120C-8, AIM-120D-3, MAKO Hypersonic Missile (courtesy of Nightstorm)
+	- Removed legacy AIM-120 code
+	
+	Models:
+	- Added new AIM-260 model based on official images
+	- Removed MAWS and tail fairings
+	- Added new (and more accurate) outer wing pylon models
+
+	Loadouts:
+	- Re-worked loadout system to allow stores on centerline station and use new outer wing pylon models
+	- Removed "F-15EX mods" loadout from list of available stores in main LUA
+
+	Textures:
+	- Added new textures for AIM-200 (courtesy of Nightstorm)
+
+F-15EX V2.0 Changelog
+
+	Models:
+	- Added custom cockpit from musolo/Yautja: animated mirrors, 4k+ textures, improved LAD configuration, and animated WSO.
+	- Adjusted cockpit position slightly to correct misalignment issue.
+
+	Textures:
+	- Re-worked MAWS textures with mild weathering
+
+	Weapons:
+	- Adjusted AIM-9X mount positions.
+	- Added support for currenthill's AIM-174B mod (stations 2, 4, 6, and 10).
+	- Added AIM-260A JATM
+	- Adjusted AIM-200 weight and impulse values (removed bogus AIM-120C-7 data that had been carried over
+	  and replaced with more accurate weight and half of AIM-120 burn time).
+
+	Sounds:
+	- Added custom cockpit betty lines
+
+	Missons:
+	- Added QuickStart missions by Infidel
